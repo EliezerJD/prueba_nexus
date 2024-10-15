@@ -1,0 +1,61 @@
+<ion-content>
+  <article class="p-2 bg-gray-100 min-h-screen">
+    <section class="mx-auto space-y-3">
+      <header class="flex items-center justify-between bg-white rounded-xl shadow-lg p-3">
+        <h2 class="text-lg font-bold text-gray-800">Filtros</h2>
+        <button class="text-blue-500 flex items-center hover:text-blue-600 transition-colors">
+          <span class="mr-2">Filtros</span>
+        </button>
+      </header>
+
+      <form [formGroup]="filterForm" class="space-y-3 bg-white rounded-xl shadow-lg p-3">
+        <section class="relative">
+          <input 
+            type="text" 
+            placeholder="Buscar..." 
+            formControlName="searchTerm" 
+            class="w-full text-base pl-2 pr-2 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+        </section>
+
+        <section class="space-y-2">
+          <h3 class="text-md font-semibold text-gray-700">Rango de fechas</h3>
+          <div class="flex flex-col space-y-2">
+            <div class="flex flex-col sm:flex-row sm:space-x-2">
+              <input 
+                type="date" 
+                formControlName="startDate" 
+                class="w-full pl-2 pr-2 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              <input 
+                type="date" 
+                formControlName="endDate" 
+                class="w-full pl-2 pr-2 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 mt-2 sm:mt-0"
+              />
+            </div>
+          </div>
+        </section>
+
+        <section class="space-y-2">
+          <h3 class="text-md font-semibold text-gray-700">Categorías</h3>
+          <div class="flex flex-wrap gap-1">
+            <button class="px-2 py-1 rounded-full flex items-center cursor-pointer transition-colors">
+              <!-- Contenido del botón aquí -->
+            </button>
+          </div>
+        </section>
+
+        <div class="flex flex-col space-y-2 mt-3">
+          <button 
+            class="w-full px-3 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-100 transition-colors">
+            Limpiar filtros
+          </button>
+          <button 
+            class="w-full px-3 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors">
+            Aplicar filtros
+          </button>
+        </div>
+      </form>
+    </section>
+  </article>
+</ion-content>
