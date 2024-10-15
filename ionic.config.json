@@ -1,0 +1,7 @@
+{
+  "name": "prueba_nexion",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
