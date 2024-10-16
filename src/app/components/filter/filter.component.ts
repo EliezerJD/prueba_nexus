@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
 import { ApiService } from '../../services/api.service';
 import { CategoryErrorPipe } from '../../pipes/category-error.pipe';
 import { FilterService } from '../../services/filter.service';
-import { Category } from '../../models/category.model'
+import { Category } from '../../models/category.model';
 
 @Component({
   selector: 'app-filter',
