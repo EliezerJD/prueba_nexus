@@ -48,9 +48,12 @@
         <h3 class="text-md font-semibold text-gray-700">Categorías</h3>
         <div class="flex flex-wrap gap-1">
           <div *ngFor="let category of (categories | categoryErrorPipe:errorMessage)">
-            <button (click)="toggleCategory(category.name)" class="flex items-center cursor-pointer transition-colors rounded-full px-4 py-2" [ngClass]="selectedCategories.includes(category.name) ? 'bg-blue-500 text-white' : 'bg-blue-100 text-blue-800'">
-                {{ category.name }}
-              <svg *ngIf="selectedCategories.includes(category.name)" class="ml-2 h-5 w-5 text-white-500" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <button 
+              (click)="toggleCategory(category.id)" 
+              class="flex items-center cursor-pointer transition-colors rounded-full px-4 py-2" 
+              [ngClass]="isCategorySelected(category.id) ? 'bg-blue-500 text-white' : 'bg-blue-100 text-blue-800'">
+              {{ category.name }}
+              <svg *ngIf="isCategorySelected(category.id)" class="ml-2 h-5 w-5 text-white-500" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z"/>  
                 <circle cx="12" cy="12" r="9" />  
                 <path d="M10 10l4 4m0 -4l-4 4" />
@@ -62,10 +65,10 @@
 
       <div class="flex flex-col space-y-2 mt-3">
         <button (click)="clearFilters()" class="btn w-full px-3 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-100 transition-colors">
-            Limpiar filtros
+          Limpiar filtros
         </button>
         <button (click)="applyFilters()" class="w-full px-3 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors">
-            Aplicar filtros
+          Aplicar filtros
         </button>
       </div>
     </form>

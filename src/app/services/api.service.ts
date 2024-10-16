@@ -16,4 +16,8 @@ export class ApiService {
   getCategories(): Observable<any> {
     return this.http.get(`${this.apiUrl}/Categories`);
   }
+
+  getData(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/Articles`);
+  }
 }

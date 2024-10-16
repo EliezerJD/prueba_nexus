@@ -1,8 +1,8 @@
 <ion-content>
-  <app-filter></app-filter>
-  <section class="p-4 bg-gray-100">
-    <div class="max-w-4xl mx-auto space-y-6">
-      <article class="bg-white rounded-xl shadow-lg p-4">
+  <app-filter (categoriesLoaded)="onCategoriesLoaded($event)"></app-filter>
+  <section class="p-4 bg-gray-100 w-full">
+    <div class="w-full space-y-6">
+      <article class="bg-white rounded-xl shadow-lg p-4 w-full">
         <h3 class="text-xl font-semibold text-gray-800 mb-4">Datos Filtrados</h3>
         <div class="overflow-x-auto">
           <table class="min-w-full divide-y divide-gray-200">
@@ -14,27 +14,27 @@
               </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
-              <tr>
-                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Nombre 1</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Categoría 1</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Fecha 1</td>
+              <tr *ngFor="let item of paginatedData()">
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{item.name}}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{getCategoryName(item.CategoryId)}}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{item.createdAt | date:'dd/MM/yyyy' }}</td>
               </tr>
             </tbody>
           </table>
         </div>
-        <p class="text-center text-gray-500 mt-4">No se encontraron resultados.</p>
-        <div class="mt-4 flex items-center justify-between">
+        <p *ngIf="filteredData.length === 0" class="text-center text-gray-500 mt-4">No se encontraron resultados.</p>
+        <div *ngIf="filteredData.length > 0" class="mt-4 flex items-center justify-between">
           <div class="text-sm text-gray-700">
-            Cantidad de resultados
+            {{ (currentPage - 1) * itemsPerPage + 1 }} al {{ Math.min(currentPage * itemsPerPage, filteredData.length) }} de {{ filteredData.length }} resultados
           </div>
           <div class="flex space-x-2">
-            <button class="px-3 py-1 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-100 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+            <button (click)="goToPage(currentPage - 1)" [disabled]="currentPage === 1" class="px-3 py-1 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-100 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
               ◀
             </button>
-            <button class="px-3 py-1 border rounded-md transition-colors">
-              # página
+            <button *ngFor="let page of getPages()" (click)="goToPage(page)" class="px-3 py-1 border rounded-md transition-colors" [ngClass]="currentPage === page ? 'bg-blue-500 text-white border-blue-500' : 'border-gray-300 text-gray-700 hover:bg-gray-100'">
+              {{ page }}
             </button>
-            <button class="px-3 py-1 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-100 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+            <button (click)="goToPage(currentPage + 1)" [disabled]="currentPage === totalPages()" class="px-3 py-1 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-100 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
               ▶
             </button>
           </div>
