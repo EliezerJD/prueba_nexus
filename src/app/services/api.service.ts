@@ -12,11 +12,11 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  // Método para hacer una solicitud GET
+  // Método para obtener las categorías
   getCategories(): Observable<any> {
     return this.http.get(`${this.apiUrl}/Categories`);
   }
-
+  // Método para obtener los artículos
   getData(): Observable<any> {
     return this.http.get(`${this.apiUrl}/Articles`);
   }
