@@ -1,0 +1,39 @@
+
+<ion-content [fullscreen]="true">
+  <div class="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-8">
+  <div class="text-center space-y-12 w-full max-w-md">
+    <h1 class="text-5xl font-bold text-gray-800 mb-12">Login simulado</h1>
+
+    <div class="space-y-8">
+      <p class="text-xl text-gray-600">
+        Al dar click en iniciar sesión se simulará una autenticación basada en token, 
+        la cual permitirá acceder al componente de la app de filtrado.
+      </p>
+      
+      <button class="w-full bg-blue-500 hover:bg-blue-600 text-white text-2xl font-bold py-6 px-8 rounded-full" (click)="simulateLogin()">
+        Iniciar Sesión
+      </button>
+    </div>
+
+    <div class="space-y-8 mt-16">
+      <p class="text-xl text-gray-600">
+        Al dar click en el botón de cerrar sesión serás redirigido al componente de la app 
+        el cual mostrará un mensaje de error ya que no te encuentras logueado.
+      </p>
+      
+      <button class="w-full text-2xl font-bold py-6 px-8 rounded-full bg-red-500 hover:bg-red-600 text-white" (click)="simulateLogout()">
+        Cerrar sesión
+      </button>
+
+      <button variant="outline" class="mt-4 bg-black hover:bg-gray-800 text-white text-lg font-semibold py-3 px-6 rounded-full" (click)="goToApp()">
+        Ir a la app
+      </button >
+    </div>
+
+    <p class="text-lg text-gray-600 mt-12">
+      Siempre puedes volver a esta página con <span class="font-bold">/login</span> (desde el navegador) 😉
+    </p>
+  </div>
+</div>
+
+</ion-content>

@@ -1,0 +1,76 @@
+<div class="p-2 bg-gray-100 pb-[18px]">
+  <section class="mx-auto space-y-3">
+    <header class="flex items-center justify-between bg-white rounded-xl shadow-lg p-3">
+      <h2 class="text-lg font-bold text-gray-800">Filtros</h2>
+      <button (click)="toggleFiltersVisibility()" class="text-blue-500 flex items-center hover:text-blue-600 transition-colors">
+        <span class="mr-2">{{ isFiltersVisible ? 'Ocultar' : 'Mostrar' }}</span>
+      </button>
+    </header>
+
+    <form *ngIf="isFiltersVisible" [formGroup]="filterForm" class="space-y-3 bg-white rounded-xl shadow-lg p-3">
+      <section class="relative">
+        <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-500" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z"/>  
+          <circle cx="10" cy="10" r="7" />  
+          <line x1="21" y1="21" x2="15" y2="15" />
+        </svg>
+        <input type="text" placeholder="Buscar..." formControlName="searchTerm" class="w-full text-base pl-10 pr-2 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"/>
+      </section>
+
+      <section class="space-y-2">
+        <h3 class="text-md font-semibold text-gray-700">Rango de fechas</h3>
+        <div class="flex flex-col space-y-2">
+          <div class="flex flex-col sm:flex-row sm:space-x-2">
+            <div class="relative w-full">
+              <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">  
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />  
+                <line x1="16" y1="2" x2="16" y2="6" />  
+                <line x1="8" y1="2" x2="8" y2="6" />  
+                <line x1="3" y1="10" x2="21" y2="10" />
+              </svg>
+              <input type="date" formControlName="startDate" class="w-full pl-10 pr-2 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"/>
+            </div>
+
+            <div class="relative w-full mt-2 sm:mt-0">
+              <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">  
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />  
+                <line x1="16" y1="2" x2="16" y2="6" />  
+                <line x1="8" y1="2" x2="8" y2="6" />  
+                <line x1="3" y1="10" x2="21" y2="10" />
+              </svg>
+              <input type="date" formControlName="endDate" class="w-full pl-10 pr-2 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"/>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="space-y-2">
+        <h3 class="text-md font-semibold text-gray-700">Categorías</h3>
+        <div class="flex flex-wrap gap-1">
+          <div *ngFor="let category of (categories | categoryErrorPipe:errorMessage)">
+            <button 
+              (click)="toggleCategory(category.id)" 
+              class="flex items-center cursor-pointer transition-colors rounded-full px-4 py-2" 
+              [ngClass]="isCategorySelected(category.id) ? 'bg-blue-500 text-white' : 'bg-blue-100 text-blue-800'">
+              {{ category.name }}
+              <svg *ngIf="isCategorySelected(category.id)" class="ml-2 h-5 w-5 text-white-500" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z"/>  
+                <circle cx="12" cy="12" r="9" />  
+                <path d="M10 10l4 4m0 -4l-4 4" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <div class="flex flex-col space-y-2 mt-3">
+        <button (click)="clearFilters()" class="btn w-full px-3 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-100 transition-colors">
+          Limpiar filtros
+        </button>
+        <button (click)="applyFilters()" class="w-full px-3 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors">
+          Aplicar filtros
+        </button>
+      </div>
+    </form>
+  </section>
+</div>
