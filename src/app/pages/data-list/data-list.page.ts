@@ -5,8 +5,8 @@ import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/stan
 import { FilterComponent } from '../../components/filter/filter.component';
 import { ApiService } from '../../services/api.service';
 import { FilterService } from '../../services/filter.service';
-import { Category } from '../../models/category.model'
-import { Item } from '../../models/item.model'
+import { Category } from '../../models/category.model';
+import { Item } from '../../models/item.model';
 
 @Component({
   selector: 'app-data-list',

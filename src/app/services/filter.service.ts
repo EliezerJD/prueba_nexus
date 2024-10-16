@@ -1,12 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-
-interface Filter {
-  searchTerm: string;
-  startDate: string;
-  endDate: string;
-  categories: string[];
-}
+import { Filter } from '../models/filter.model'
 
 @Injectable({
   providedIn: 'root'
