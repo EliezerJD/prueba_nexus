@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard'; // Ajusta la ruta
 
 export const routes: Routes = [
   {
@@ -8,7 +9,8 @@ export const routes: Routes = [
   },
   {
     path: 'app',
-    loadComponent: () => import('./pages/data-list/data-list.page').then( m => m.DataListPage)
+    loadComponent: () => import('./pages/data-list/data-list.page').then( m => m.DataListPage),
+    canActivate: [AuthGuard]
   },
   {
     path: 'login',

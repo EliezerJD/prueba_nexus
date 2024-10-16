@@ -10,9 +10,7 @@
         la cual permitirá acceder al componente de la app de filtrado.
       </p>
       
-      <button 
-        class="w-full bg-blue-500 hover:bg-blue-600 text-white text-2xl font-bold py-6 px-8 rounded-full"
-        (click)="simulateLogin()">
+      <button class="w-full bg-blue-500 hover:bg-blue-600 text-white text-2xl font-bold py-6 px-8 rounded-full" (click)="simulateLogin()">
         Iniciar Sesión
       </button>
     </div>
@@ -23,15 +21,17 @@
         el cual mostrará un mensaje de error ya que no te encuentras logueado.
       </p>
       
-      <button 
-        class="w-full text-2xl font-bold py-6 px-8 rounded-full bg-red-500 hover:bg-red-600 text-white"
-        (click)="simulateLogout()">
+      <button class="w-full text-2xl font-bold py-6 px-8 rounded-full bg-red-500 hover:bg-red-600 text-white" (click)="simulateLogout()">
         Cerrar sesión
       </button>
+
+      <button variant="outline" class="mt-4 bg-black hover:bg-gray-800 text-white text-lg font-semibold py-3 px-6 rounded-full" (click)="goToApp()">
+        Ir a la app
+      </button >
     </div>
 
     <p class="text-lg text-gray-600 mt-12">
-      Siempre puedes volver a esta página con <span class="font-bold">/login</span>.
+      Siempre puedes volver a esta página con <span class="font-bold">/login</span> (desde el navegador) 😉
     </p>
   </div>
 </div>
