@@ -7,6 +7,7 @@ import { ApiService } from '../../services/api.service';
 import { FilterService } from '../../services/filter.service';
 import { Category } from '../../models/category.model';
 import { Item } from '../../models/item.model';
+<<<<<<< HEAD
 
 interface FilterResponse {
   success: boolean;
@@ -14,12 +15,15 @@ interface FilterResponse {
   filteredData: Item[];
 }
 
+=======
+import { HttpClientModule } from '@angular/common/http';
+>>>>>>> 8109a2b (se agragaron las pruebas de creación de todos los componentes y se completo las pruebas del auth.guard)
 @Component({
   selector: 'app-data-list',
   templateUrl: './data-list.page.html',
   styleUrls: ['./data-list.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, FilterComponent]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, FilterComponent, HttpClientModule]
 })
 export class DataListPage implements OnInit {
 

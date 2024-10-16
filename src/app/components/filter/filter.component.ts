@@ -7,13 +7,14 @@ import { ApiService } from '../../services/api.service';
 import { CategoryErrorPipe } from '../../pipes/category-error.pipe';
 import { FilterService } from '../../services/filter.service';
 import { Category } from '../../models/category.model';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-filter',
   templateUrl: './filter.component.html',
   styleUrls: ['./filter.component.scss'],
   standalone: true,
-  imports: [IonContent, ReactiveFormsModule, CommonModule, CategoryErrorPipe]
+  imports: [IonContent, ReactiveFormsModule, CommonModule, CategoryErrorPipe, HttpClientModule]
 })
 export class FilterComponent implements OnInit {
 
