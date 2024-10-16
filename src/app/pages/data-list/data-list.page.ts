@@ -7,6 +7,7 @@ import { ApiService } from '../../services/api.service';
 import { FilterService } from '../../services/filter.service';
 import { Category } from '../../models/category.model';
 import { Item } from '../../models/item.model';
+import { Filter } from '../../models/filter.model';
 import { HttpClientModule } from '@angular/common/http';
 
 interface FilterResponse {
@@ -52,7 +53,7 @@ export class DataListPage implements OnInit {
     });
   }
 
-  filterData(data: { searchTerm: string; startDate: string; endDate: string; categories: string[]; }) {
+  filterData(data: Filter) {
     if (!data.searchTerm && !data.startDate && !data.endDate && data.categories.length === 0) {
       this.filteredData = [...this.data];
       this.filterResponse = {
