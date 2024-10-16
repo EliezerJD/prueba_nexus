@@ -1,9 +1,3 @@
-//Ajusta la altura a la que se muestra el componente para dispositios que tengan un "notch"
-:host {
-  padding-top: env(safe-area-inset-top);
-  padding-bottom: env(safe-area-inset-bottom);
-}
-
 /* Estilos personalizados para sobrescribir */
 .btn {
     border: 1px solid #D1D5DB;
