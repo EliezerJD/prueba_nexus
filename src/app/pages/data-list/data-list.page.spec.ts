@@ -1,14 +1,17 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { DataListPage } from './data-list.page';
+import { TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { DataListPage } from './data-list.page'; // Ajusta la ruta según tu estructura
 
 describe('DataListPage', () => {
   let component: DataListPage;
-  let fixture: ComponentFixture<DataListPage>;
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DataListPage);
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule, DataListPage], // Asegúrate de importar HttpClientTestingModule aquí
+    });
+
+    const fixture = TestBed.createComponent(DataListPage);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {

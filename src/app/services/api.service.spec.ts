@@ -1,12 +1,14 @@
 import { TestBed } from '@angular/core/testing';
-
-import { ApiService } from './api.service';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { ApiService } from './api.service'; // Ajusta la ruta
 
 describe('ApiService', () => {
   let service: ApiService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule], // Importa HttpClientTestingModule aquí
+    });
     service = TestBed.inject(ApiService);
   });
 
