@@ -8,6 +8,12 @@ import { FilterService } from '../../services/filter.service';
 import { Category } from '../../models/category.model';
 import { Item } from '../../models/item.model';
 
+interface FilterResponse {
+  success: boolean;
+  message: string;
+  filteredData: Item[];
+}
+
 @Component({
   selector: 'app-data-list',
   templateUrl: './data-list.page.html',
@@ -23,6 +29,7 @@ export class DataListPage implements OnInit {
   currentPage: number = 1;
   itemsPerPage: number = 5;
   Math = Math;
+  filterResponse: FilterResponse = { success: true, message: '', filteredData: [] };
 
   constructor(private apiService: ApiService, private filterService: FilterService) {}
 
@@ -30,6 +37,11 @@ export class DataListPage implements OnInit {
     this.apiService.getData().subscribe((response) => {
       this.data = response;
       this.filteredData = response;
+      this.filterResponse = {
+        success: true,
+        message: `Se encontraron ${response.length} resultados.`,
+        filteredData: response
+      };
     }, (error) => {
       console.error('Error al obtener los datos:', error);
     });
@@ -42,9 +54,14 @@ export class DataListPage implements OnInit {
   filterData(data: { searchTerm: string; startDate: string; endDate: string; categories: string[]; }) {
     if (!data.searchTerm && !data.startDate && !data.endDate && data.categories.length === 0) {
       this.filteredData = [...this.data];
+      this.filterResponse = {
+        success: true,
+        message: `Se encontraron ${this.data.length} resultados.`,
+        filteredData: this.data
+      };
       return;
     }
-    
+
     this.filteredData = this.data.filter(item => {
       const matchesSearchTerm = item.name.toLowerCase().includes(data.searchTerm.toLowerCase());
       const matchesStartDate = !data.startDate || new Date(item.createdAt) >= new Date(data.startDate);
@@ -53,6 +70,20 @@ export class DataListPage implements OnInit {
 
       return matchesSearchTerm && matchesStartDate && matchesEndDate && matchesCategory;
     });
+
+    if (this.filteredData.length > 0) {
+      this.filterResponse = {
+        success: true,
+        message: `Se encontraron ${this.filteredData.length} resultados.`,
+        filteredData: this.filteredData
+      };
+    } else {
+      this.filterResponse = {
+        success: false,
+        message: 'No se encontraron resultados con los filtros aplicados.',
+        filteredData: []
+      };
+    }
   }
 
   onCategoriesLoaded(categories: Category[]) {
